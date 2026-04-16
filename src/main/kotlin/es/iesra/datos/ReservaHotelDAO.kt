@@ -1,7 +1,6 @@
 package es.iesra.datos
 
 import es.iesra.dominio.ReservaHotel
-import es.iesra.dominio.ReservaVuelo
 import java.io.File
 
 class ReservaHotelDAO(private val file : File) : IDAO<ReservaHotel>{
@@ -10,16 +9,16 @@ class ReservaHotelDAO(private val file : File) : IDAO<ReservaHotel>{
 
         if (file.readLines().contains(entidadParseada)) throw IllegalArgumentException("La reserva ya existe en el fichero.")
         else file.appendText(entidadParseada)
-
     }
 
     override fun read(): List<ReservaHotel> {
         val lineas = file.readLines()
         val reservas = mutableListOf<ReservaHotel>()
-        lineas.map{
+        lineas.forEach{
             val partes = it.split(",")
-            reservas.add(ReservaHotel.recuperar(partes[1],partes[2],partes[3].toInt()))
+            reservas.add(ReservaHotel.recuperarInstancia(partes[1].toInt(),partes[2],partes[3],partes[4].toInt()))
         }
+        return reservas
     }
 
     override fun delete(entity: ReservaHotel) {

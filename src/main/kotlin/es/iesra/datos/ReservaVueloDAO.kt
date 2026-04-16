@@ -15,10 +15,14 @@ class ReservaVueloDAO(private val file : File): IDAO<ReservaVuelo> {
     }
 
 
-
-
-    override fun read(entity: ReservaVuelo) : List<ReservaVuelo>{
-        TODO("Not yet implemented")
+    override fun read(): List<ReservaVuelo> {
+        val lineas = file.readLines()
+        val reservas = mutableListOf<ReservaVuelo>()
+        lineas.forEach{
+            val partes = it.split(",")
+            reservas.add(ReservaVuelo.recuperarInstancia(partes[1].toInt(),partes[2],partes[3],partes[4],partes[5]))
+        }
+        return reservas
     }
 
     override fun delete(entity: ReservaVuelo) {
