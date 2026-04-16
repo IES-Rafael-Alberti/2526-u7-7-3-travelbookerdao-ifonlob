@@ -1,6 +1,7 @@
 package es.iesra.datos
 
 import es.iesra.dominio.ReservaHotel
+import es.iesra.dominio.ReservaVuelo
 import java.io.File
 
 class ReservaHotelDAO(private val file : File) : IDAO<ReservaHotel>{
@@ -22,7 +23,19 @@ class ReservaHotelDAO(private val file : File) : IDAO<ReservaHotel>{
     }
 
     override fun delete(entity: ReservaHotel) {
-        TODO("Not yet implemented")
+        val entidadParseada = "${entity.id},${entity.descripcion},${entity.ubicacion},${entity.numeroNoches}"
+
+        if(file.readLines().contains(entidadParseada)){
+            val lineasFiltradas = file.readLines().filter{
+                it.split(",")[0].toInt() != entity.id
+            }
+            file.printWriter().use{ writer ->
+                lineasFiltradas.forEach {
+                    writer.println(it)
+                }
+            }
+        }
+        else throw IllegalArgumentException("La reserva a eliminar no se encuentra en el archivo.")
     }
 
 }
