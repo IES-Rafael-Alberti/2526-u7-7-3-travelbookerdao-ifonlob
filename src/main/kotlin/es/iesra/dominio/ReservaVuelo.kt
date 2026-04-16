@@ -1,6 +1,7 @@
 package es.iesra.dominio
 
 import java.time.LocalDateTime
+import java.io.File
 
 /**
  * Clase que representa una Reserva de Vuelo.
@@ -38,6 +39,11 @@ class ReservaVuelo private constructor(
             val reserva = ReservaVuelo(contador, descripcion, origen, destino, horaVuelo)
             contador++
             return reserva
+        }
+
+        fun recuperarInstancia(id : Int, descripcion: String, origen : String, destino : String, horaVuelo : String) : ReservaVuelo{
+            require("$id,$descripcion,$origen,$destino,$horaVuelo" in File("./reservasVuelo.txt").readLines())
+            return ReservaVuelo(id,descripcion,origen,destino,horaVuelo)
         }
     }
 }
