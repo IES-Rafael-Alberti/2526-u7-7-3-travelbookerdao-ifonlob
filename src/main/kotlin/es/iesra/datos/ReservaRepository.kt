@@ -28,4 +28,10 @@ class ReservaRepository(private val daoVuelos : IDAO<ReservaVuelo>, private val 
     }
 
     override fun encontrarPorId(id: Int): Reserva? = obtenerTodas().find{it.id == id}
+
+    override fun obtenerSiguienteId(): Int {
+        val todas = obtenerTodas()
+
+        return (todas.maxOfOrNull { it.id } ?: 0)
+    }
 }
