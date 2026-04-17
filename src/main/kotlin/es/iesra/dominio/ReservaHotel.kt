@@ -1,6 +1,5 @@
 package es.iesra.dominio
 
-import java.io.File
 import java.time.LocalDateTime
 
 /**
@@ -38,7 +37,6 @@ class ReservaHotel private constructor(
         }
 
         fun recuperarInstancia(id : Int, descripcion : String, ubicacion : String, numeroNoches : Int) : ReservaHotel{
-            require("$id,$descripcion,$ubicacion,$numeroNoches" in File("./reservasHotel.txt").readLines())
             return ReservaHotel(id,descripcion,ubicacion,numeroNoches)
         }
     }
