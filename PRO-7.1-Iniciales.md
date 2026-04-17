@@ -43,4 +43,16 @@ evitando que la aplicación se cierre de forma inesperada.
 
 ##### Pregunta3a - Describe la forma de acceso para leer información
 
-Para leer información se utiliza el método `readLines()` con el fin de obtener todas las líneas del fichero.
+Para leer información se utiliza el método `readLines()` con el fin de obtener todas las líneas del fichero, en donde
+posteriormente se transforman a formato CSV a través del uso del método `split(",")` y de `recuperarInstancia()` para construir la reserva.
+
+##### Pregunta3b - Describe la forma de acceso para escribir información
+
+He empleado el método `appendText()` con el objetivo de añadir nuevas reservas al final del archivo, en donde previamente se 
+ha transformado el objeto a su representación en cadena de texto con formato CSV.
+
+##### Pregunta 3c - Describe la forma de acceso para actualizar información. Pon ejemplos de código
+
+El borrado lo he llevado a cabo a través de una estrategia de filtrado, en la cual
+se leen todas las líneas y se filtran todas aquellas en las cuales no coincide con el id de la reserva a eliminar,
+en donde posteriormente se sobrescribe el archivo ya con la reserva asociada a ese id eliminada.
