@@ -1,8 +1,11 @@
+import es.iesra.datos.ReservaHotelDAO
 import es.iesra.datos.ReservaRepository
+import es.iesra.datos.ReservaVueloDAO
 import es.iesra.presentacion.ConsolaUI
 import es.iesra.presentacion.IUserInterface
 import es.iesra.servicio.IReservaService
 import es.iesra.servicio.ReservaService
+import java.io.File
 
 /**
  * Función principal que inicia la aplicación.
@@ -10,15 +13,19 @@ import es.iesra.servicio.ReservaService
  */
 fun main() {
     // Crear la instancia del repositorio (capa de datos).
-    val repositorio = ReservaRepository()
+    val fileVuelos = File("reservasVuelo.txt")
+    val fileHotel = File("reservasHotel.txt")
+    if (!fileVuelos.exists()) fileVuelos.createNewFile()
+    if (!fileHotel.exists()) fileHotel.createNewFile()
 
-    // Inyectar la dependencia en el servicio a través de la interfaz.
+    val daoVuelo = ReservaVueloDAO(fileVuelos)
+    val daoHotel = ReservaHotelDAO(fileHotel)
+
+    val repositorio = ReservaRepository(daoVuelo, daoHotel)
+
     val reservaService: IReservaService = ReservaService(repositorio)
-
-    // Inyectar el servicio en la capa de presentación a través de su interfaz.
     val ui: IUserInterface = ConsolaUI(reservaService)
 
-    // Iniciar la aplicación.
     ui.iniciar()
 }
 /*
