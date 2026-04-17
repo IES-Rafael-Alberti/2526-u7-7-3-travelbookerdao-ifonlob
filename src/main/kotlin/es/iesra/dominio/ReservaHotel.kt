@@ -29,11 +29,14 @@ class ReservaHotel private constructor(
         /**
          * Método de clase para crear una nueva instancia de ReservaHotel.
          */
-        fun creaInstancia(descripcion: String, ubicacion: String, numeroNoches: Int): ReservaHotel {
+        fun creaInstancia(id : Int,descripcion: String, ubicacion: String, numeroNoches: Int): ReservaHotel {
             require(numeroNoches > 0) { "El número de noches debe ser mayor a 0" }
-            val reserva = ReservaHotel(contador, descripcion, ubicacion, numeroNoches)
-            contador++
+            val reserva = ReservaHotel(id, descripcion, ubicacion, numeroNoches)
             return reserva
+        }
+
+        fun recuperarInstancia(id : Int, descripcion : String, ubicacion : String, numeroNoches : Int) : ReservaHotel{
+            return ReservaHotel(id,descripcion,ubicacion,numeroNoches)
         }
     }
 }

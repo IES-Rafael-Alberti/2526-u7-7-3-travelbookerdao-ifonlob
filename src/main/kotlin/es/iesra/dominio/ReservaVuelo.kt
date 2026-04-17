@@ -31,13 +31,15 @@ class ReservaVuelo private constructor(
          * Método de clase para crear una nueva instancia de ReservaVuelo.
          * Valida el formato de hora mediante una expresión regular.
          */
-        fun creaInstancia(descripcion: String, origen: String, destino: String, horaVuelo: String): ReservaVuelo {
+        fun creaInstancia(id : Int,descripcion: String, origen: String, destino: String, horaVuelo: String): ReservaVuelo {
             // Validación simple del formato de hora (HH:mm)
             val regex = Regex("^([01]?\\d|2[0-3]):[0-5]\\d\$")
             require(regex.matches(horaVuelo)) { "El formato de la hora debe ser HH:mm" }
-            val reserva = ReservaVuelo(contador, descripcion, origen, destino, horaVuelo)
-            contador++
-            return reserva
+            return ReservaVuelo(id, descripcion, origen, destino, horaVuelo)
+        }
+
+        fun recuperarInstancia(id : Int, descripcion: String, origen : String, destino : String, horaVuelo : String) : ReservaVuelo{
+            return ReservaVuelo(id,descripcion,origen,destino,horaVuelo)
         }
     }
 }
