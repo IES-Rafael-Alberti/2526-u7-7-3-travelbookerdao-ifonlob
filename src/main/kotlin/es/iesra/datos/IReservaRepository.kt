@@ -10,4 +10,5 @@ interface IReservaRepository {
     fun eliminar(reserva : Reserva)
     fun encontrarPorId(id : Int) : Reserva?
     fun obtenerTodas(): List<Reserva>
+    fun obtenerSiguienteId() : Int
 }
