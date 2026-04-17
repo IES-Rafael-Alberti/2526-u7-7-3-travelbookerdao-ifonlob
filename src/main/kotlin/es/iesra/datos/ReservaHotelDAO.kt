@@ -1,7 +1,6 @@
 package es.iesra.datos
 
 import es.iesra.dominio.ReservaHotel
-import es.iesra.dominio.ReservaVuelo
 import java.io.File
 
 class ReservaHotelDAO(private val file : File) : IDAO<ReservaHotel>{
