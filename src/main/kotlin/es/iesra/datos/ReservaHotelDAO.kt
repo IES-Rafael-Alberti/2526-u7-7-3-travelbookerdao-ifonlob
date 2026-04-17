@@ -17,7 +17,7 @@ class ReservaHotelDAO(private val file : File) : IDAO<ReservaHotel>{
         val reservas = mutableListOf<ReservaHotel>()
         lineas.forEach{
             val partes = it.split(",")
-            reservas.add(ReservaHotel.recuperarInstancia(partes[1].toInt(),partes[2],partes[3],partes[4].toInt()))
+            reservas.add(ReservaHotel.recuperarInstancia(partes[0].toInt(),partes[1],partes[2],partes[3].toInt()))
         }
         return reservas
     }
