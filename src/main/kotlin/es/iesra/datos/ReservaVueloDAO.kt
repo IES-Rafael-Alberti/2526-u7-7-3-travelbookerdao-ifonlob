@@ -15,6 +15,7 @@ class ReservaVueloDAO(private val file : File): IDAO<ReservaVuelo> {
 
 
     override fun read(): List<ReservaVuelo> {
+        if (!file.exists()) return emptyList()
         val lineas = file.readLines()
         val reservas = mutableListOf<ReservaVuelo>()
         lineas.forEach{
