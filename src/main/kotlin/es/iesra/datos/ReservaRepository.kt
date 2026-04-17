@@ -5,8 +5,8 @@ import es.iesra.dominio.Reserva
 /**
  * Implementación en memoria del repositorio de reservas.
  */
-class ReservaRepository : IReservaRepository {
-    private val reservas = mutableListOf<Reserva>()
+class ReservaRepository(dao : IDAO<Reserva>) : IReservaRepository {
+    private val reservas = dao.read()
 
     override fun agregar(reserva: Reserva): Boolean {
         var agregado = false
